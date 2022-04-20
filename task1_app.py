@@ -115,6 +115,7 @@ class MainWindow(QtWidgets.QMainWindow):
             probability = cdf(Delta_m)
             self.label_result.setText("%.7f"%(100*probability[-1]))
 
+        print("Hello")
         self.canvas_distribtion.draw()
 
 app = QtWidgets.QApplication(sys.argv)
