@@ -83,7 +83,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def calculate_CDF(self):
         ###############################################################################
-        # plot showing area under pdf corresponding to Pr(m1 <= m <= m2)
+        # plot showing area under pdf corresponding to Pr(s1 <= m <= s2)
         ################################################################################
         self.axes_distribution.clear()
         self.axes_distribution.plot(range, pdf(range))
@@ -105,43 +105,18 @@ class MainWindow(QtWidgets.QMainWindow):
             speed_max = self.horizontalSlider_below.value()
 
         Delta_m = np.linspace(speed_min, speed_max, int(speed_max - speed_min))  # mass interval
-        # print(Delta_m.size)
-        # print(speed_min,"\n",speed_max,"\n",Delta_m)
-        # fig = plt.figure()
-        # self.axes_distribution.fill_between(Delta_m,pdf(Delta_m),color='red')
         self.axes_distribution.fill_between(Delta_m, pdf(Delta_m), color='C3', alpha=0.2)
+
         if self.radioButton_above.isChecked():
             probability = 1-cdf(Delta_m)
             self.label_result.setText("%.7f"%(100*probability[0]))
-
 
         elif self.radioButton_below.isChecked():
             probability = cdf(Delta_m)
             self.label_result.setText("%.7f"%(100*probability[-1]))
 
         # print(probability)
-
-
         self.canvas_distribtion.draw()
-
-
-        ################################################################################
-        # plot of cumulative distribution function and highlighting values for m1 and m2
-        ################################################################################
-        # fig = plt.figure()
-        # plt.plot(m, P(m), lw=3)
-        # plt.hlines(P(m1), min(m), m1, color='C3')        # print("Hello")
-        # plt.hlines(P(m2), min(m), m2, color='C3')
-        # plt.vlines(m1, 0, P(m1), color='C3')
-        # plt.vlines(m2, 0, P(m2), color='C3',
-        #            label="$\mathrm{Pr}(%d \le m \le %d) = P_M(%d) - P_M(%d)$ \n\n"
-        #                  ".$\hphantom{\mathrm{Pr}(.5\le m\le125)} = %.3f - %.3f$ \n\n"
-        #                  ".$\hphantom{\mathrm{Pr}(.5\le m\le125)} \\approx %.3f$"
-        #                  % (m1, m2, m1, m2, P(m2), P(m1), P(m2) - P(m1)))
-        # plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
-        # plt.xlabel("$m$   $\mathrm{[g]}$ \n ice cream mass   ")
-        # plt.ylabel("cumulative distribution function \n $P_M(m)$")
-        # plt.show()
 
 app = QtWidgets.QApplication(sys.argv)
 app.setStyleSheet(qdarkstyle.load_stylesheet())
