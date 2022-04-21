@@ -1,8 +1,8 @@
 # Sports_Course_Project
 - [Description](#Description)
 - [Tasks](#Tasks)
-   - [Task 1](#Task1)
-   - [Task 2](#Task2)
+   - [Task 1](#Task-1)
+   - [Task 2](#Task-2)
 ## Description
 This repo is for "Sports Course" Project which is a computer simulation project covering part of the sports relevant concepts.
 ## Tasks
@@ -11,4 +11,21 @@ Designing a simulation program for tennis ball ace shot as it's found to obey a 
 ### Demo :
 <p align="center">
   <img src="https://github.com/Mostafa-Medhat/Sports_Course_Project/blob/main/docs/task1_gif.gif?raw=true">
+</p>
+
+---
+### Task 2
+Design a simulation program with a graphical user interface for **Projectile Simulation** `(e.g. Soccer Game)`. Considering a foul kick scenario, Display the following parameters:
+
+**Control Knobs :**
+- Distance from the goal
+- Firing velocity
+- Firing angle
+
+**Indicators :**
+- Maximum ball height
+- Ball height at the goal plane arrival point
+### Demo :
+<p align="center">
+  <img src="https://github.com/Mostafa-Medhat/Sports_Course_Project/blob/main/docs/task2_gif.gif?raw=true">
 </p>
