@@ -1,30 +1,10 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import norm
-import matplotlib.pyplot as plt
-from scipy.integrate import quad
-import sys
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
 import sys
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtGui import QPixmap, QImage
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-import numpy as np
-from PIL import Image as im
-from PyQt5 import QtGui
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QFileDialog, QLabel, QTextEdit
-import sys
-from PyQt5.QtGui import QPixmap
 import qdarkstyle
+from PyQt5 import QtWidgets, uic
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+from scipy.stats import norm
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -33,7 +13,7 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi('task1_gui.ui', self)
         self.show()  # Show the GUI
 
-        self.figure_distribtion = Figure( dpi=100)
+        self.figure_distribtion = Figure(dpi=100)
         self.axes_distribution = self.figure_distribtion.add_subplot()
         self.canvas_distribtion = FigureCanvas(self.figure_distribtion)
         self.canvas_distribtion.figure.set_facecolor("#19232D")
@@ -115,7 +95,6 @@ class MainWindow(QtWidgets.QMainWindow):
             probability = cdf(Delta_m)
             self.label_result.setText("%.7f"%(100*probability[-1]))
 
-        print("Hello")
         self.canvas_distribtion.draw()
 
 app = QtWidgets.QApplication(sys.argv)
