@@ -54,7 +54,7 @@
          <string>Specify Parameters</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
+         <item row="1" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout">
            <property name="spacing">
             <number>23</number>
@@ -75,7 +75,7 @@
               <string>Above</string>
              </property>
              <property name="checked">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -129,7 +129,7 @@
            </item>
           </layout>
          </item>
-         <item row="1" column="0">
+         <item row="0" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <property name="spacing">
             <number>23</number>
@@ -148,6 +148,9 @@
              </property>
              <property name="text">
               <string>Below</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -248,7 +251,10 @@
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,4,1">
+          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,1,1">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QLabel" name="label_probability">
              <property name="font">
@@ -259,7 +265,7 @@
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Probability = &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Probability  = &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -285,7 +291,7 @@
               <number>2</number>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0.0000000000&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0.0000&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

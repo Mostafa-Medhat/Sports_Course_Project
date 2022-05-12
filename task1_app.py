@@ -89,11 +89,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if self.radioButton_above.isChecked():
             probability = 1-cdf(Delta_m)
-            self.label_result.setText("%.7f"%(100*probability[0]))
+            self.label_result.setText("%.4f"%(100*probability[0]))
 
         elif self.radioButton_below.isChecked():
             probability = cdf(Delta_m)
-            self.label_result.setText("%.7f"%(100*probability[-1]))
+            self.label_result.setText("%.4f"%(100*probability[-1]))
 
         self.canvas_distribtion.draw()
 
