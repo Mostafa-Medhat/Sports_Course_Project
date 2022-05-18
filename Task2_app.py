@@ -34,6 +34,5 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 app = QtWidgets.QApplication(sys.argv)
-# app.setStyleSheet(qdarkstyle.load_stylesheet())
 window = MainWindow()
 app.exec_()

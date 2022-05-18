@@ -13,6 +13,7 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi('task1_gui.ui', self)
         self.show()  # Show the GUI
 
+        # make the structre of the canvas
         self.figure_distribtion = Figure(dpi=100)
         self.axes_distribution = self.figure_distribtion.add_subplot()
         self.canvas_distribtion = FigureCanvas(self.figure_distribtion)
@@ -36,10 +37,18 @@ class MainWindow(QtWidgets.QMainWindow):
         global cdf
         xmin = mu-3*sigma
         xmax = mu+3*sigma
-        range = np.linspace(xmin ,xmax, 100)  #range
+        range = np.linspace(xmin ,xmax, int(xmax-xmin))  #range
         normal_dist = norm(mu,sigma)  # normal distribution
         pdf = normal_dist.pdf  # probability density function
         cdf = normal_dist.cdf  # cumulative distribution function
+
+        self.horizontalSlider_above.setMinimum(xmin)
+        self.horizontalSlider_above.setMaximum(xmax)
+
+        self.horizontalSlider_below.setMinimum(xmin)
+        self.horizontalSlider_below.setMaximum(xmax)
+
+
 
         self.horizontalSlider_above.valueChanged.connect(lambda: self.calculate_CDF())
         self.horizontalSlider_below.valueChanged.connect(lambda: self.calculate_CDF())
@@ -53,10 +62,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # plot of probability density function (pdf)
         ###############################################################################
         self.axes_distribution.plot(range, pdf(range))
-        self.axes_distribution.set_yticks([])
+        # self.axes_distribution.set_yticks([])
         self.axes_distribution.axvline(mu, color='C1')
         self.axes_distribution.hlines(0.012, xmin=mu-sigma, xmax=mu+sigma, color='C2')
-        self.axes_distribution.legend(('Distribution','Mean=%d'%mu,'Sigma=%d'%sigma), loc='upper right')
+        self.axes_distribution.legend(('Distribution', 'Mean=%d km/h' % mu, 'Sigma=%d km/h' % sigma), loc='upper right')
         self.axes_distribution.set_xlabel("Ball Hit Speed")
         self.axes_distribution.set_ylabel("Probability Density Function")
         self.canvas_distribtion.draw()
@@ -67,33 +76,46 @@ class MainWindow(QtWidgets.QMainWindow):
         ################################################################################
         self.axes_distribution.clear()
         self.axes_distribution.plot(range, pdf(range))
-        self.axes_distribution.set_yticks([])
+        # self.axes_distribution.set_yticks([])
         self.axes_distribution.axvline(mu, color='C1')
         self.axes_distribution.hlines(0.012, xmin=mu - sigma, xmax=mu + sigma, color='C2')
-        self.axes_distribution.legend(('Distribution', 'Mean=%d' % mu, 'Sigma=%d' % sigma), loc='upper right')
+        self.axes_distribution.legend(('Distribution', 'Mean=%d km/h' % mu, 'Sigma=%d km/h' % sigma), loc='upper right')
         self.axes_distribution.set_xlabel("Ball Hit Speed")
         self.axes_distribution.set_ylabel("Probability Density Function")
         self.axes_distribution.axes.set_title("Gaussian Distribution")
         self.axes_distribution.axes.title.set_color('white')
 
-
-        if self.radioButton_above.isChecked():
-            speed_min = self.horizontalSlider_above.value()  # lower mass limit
-            speed_max = xmax  # upper mass limit
-        elif self.radioButton_below.isChecked():
+        if self.radioButton_below.isChecked():
             speed_min = xmin
             speed_max = self.horizontalSlider_below.value()
 
-        Delta_m = np.linspace(speed_min, speed_max, int(speed_max - speed_min))  # mass interval
+        elif self.radioButton_above.isChecked():
+            speed_min = self.horizontalSlider_above.value()  # lower mass limit
+            speed_max = xmax  # upper mass limit
+
+        if (speed_max == speed_min):
+            Delta_m = np.linspace(speed_min, speed_max, 1)  # mass interval
+        else:
+            Delta_m = np.linspace(speed_min, speed_max, int(speed_max - speed_min))  # mass interval
+
         self.axes_distribution.fill_between(Delta_m, pdf(Delta_m), color='C3', alpha=0.2)
 
-        if self.radioButton_above.isChecked():
-            probability = 1-cdf(Delta_m)
+        if self.radioButton_below.isChecked():
+            if(speed_max == speed_min):
+                probability = pdf(Delta_m)
+            else:
+                probability = cdf(Delta_m)
+            self.label_result.setText("%.4f" % (100 * probability[-1]))
+
+        elif self.radioButton_above.isChecked():
+            if (speed_min == speed_max):
+                probability = pdf(Delta_m)
+            else:
+                probability = 1-cdf(Delta_m)
             self.label_result.setText("%.4f"%(100*probability[0]))
 
-        elif self.radioButton_below.isChecked():
-            probability = cdf(Delta_m)
-            self.label_result.setText("%.4f"%(100*probability[-1]))
+        # print(probability)
+
 
         self.canvas_distribtion.draw()
 
