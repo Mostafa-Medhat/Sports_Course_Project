@@ -41,10 +41,11 @@ class MainWindow(QtWidgets.QMainWindow):
         ############ Plotting Parameters #############
         self.axes_draw.clear()
         self.axes_draw.axes.set_title("Projectile Motion")
-        tmax = ((2 * initial_velocity) * np.sin(angle)) / g
-        timemat = tmax * np.linspace(0, 1, 100)  # create time vectors
-        x = ((initial_velocity * timemat) * np.cos(angle))
-        y = ((initial_velocity * timemat) * np.sin(angle)) - ((0.5 * g) * (timemat ** 2))
+        tmax = ((2 * initial_velocity) * np.sin(angle)) / g   # Time of Flight
+        time_range = tmax * np.linspace(0, 1, 100)  # create time range
+        x = ((initial_velocity * time_range) * np.cos(angle))  # distance at each time
+        y = ((initial_velocity * time_range) * np.sin(angle)) - ((0.5 * g) * (time_range ** 2))   # height at each time
+
 
         ############### Caculate The Desired Heights ##############
         time_at_maxheight = (initial_velocity * np.sin(angle)) / (g)
