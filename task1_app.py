@@ -2,6 +2,7 @@ import sys
 import numpy as np
 import qdarkstyle
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import QDesktopWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from scipy.stats import norm
@@ -11,6 +12,13 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         uic.loadUi('task1_gui.ui', self)
+
+        #### Center The Window ####
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+
         self.show()  # Show the GUI
 
         # make the structre of the canvas

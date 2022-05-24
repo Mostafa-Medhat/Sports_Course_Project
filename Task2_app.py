@@ -1,12 +1,18 @@
 import math
 import sys
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import QDesktopWidget
 
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         uic.loadUi('task2_gui.ui', self)
+        ##### Center The Window ########
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
         self.show()  # Show the GUI
 
         self.pushButton_calculate.clicked.connect(lambda: self.calculateHeights())
