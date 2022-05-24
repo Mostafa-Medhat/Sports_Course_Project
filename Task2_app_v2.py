@@ -42,7 +42,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.axes_draw.clear()
         self.axes_draw.axes.set_title("Projectile Motion")
         tmax = ((2 * initial_velocity) * np.sin(angle)) / g   # Time of Flight
-        time_range = tmax * np.linspace(0, 1, 100)  # create time range
+        time_range = np.linspace(0, tmax, 100)  # create time range w/ 100 points
         x = ((initial_velocity * time_range) * np.cos(angle))  # distance at each time
         y = ((initial_velocity * time_range) * np.sin(angle)) - ((0.5 * g) * (time_range ** 2))   # height at each time
 
