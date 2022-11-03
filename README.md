@@ -27,5 +27,5 @@ Design a simulation program with a graphical user interface for **Projectile Sim
 - Ball height at the goal plane arrival point
 ### Demo :
 <p align="center">
-  <img src="https://github.com/Mostafa-Medhat/Sports_Course_Project/blob/main/docs/task2_gif.gif?raw=true">
+  <img src="https://github.com/Mostafa-Medhat/Sports_Course_Project/blob/main/docs/task2_gif_2.gif?raw=true">
 </p>
